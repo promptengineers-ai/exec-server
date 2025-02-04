@@ -1,7 +1,7 @@
 const express = require('express');
 const { exec } = require('child_process');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3005;
 
 // Health check endpoint – responds with a simple status message
 app.get('/health', (req, res) => {
@@ -27,6 +27,7 @@ app.post('/exec', (req, res) => {
   });
 });
 
-app.listen(port, () => {
+// Bind to all network interfaces so that the server is accessible from the host (and externally)
+app.listen(port, '0.0.0.0', () => {
   console.log(`Express server is listening on port ${port}`);
 });

@@ -3,6 +3,11 @@ const { exec } = require('child_process');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Health check endpoint – responds with a simple status message
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is up and running');
+});
+
 // Middleware to parse JSON bodies in POST requests
 app.use(express.json());
 
